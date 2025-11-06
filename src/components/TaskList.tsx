@@ -7,7 +7,7 @@ import { TaskItem } from './TaskItem';
 interface TaskListProps {
     list: Task[];
     onToggleTaskStatus: (task: Task) => void;
-    onDeleteTask: () => void;
+    onDeleteTask: (deletedTask: Task) => void;
 }
 
 export function TaskList ({

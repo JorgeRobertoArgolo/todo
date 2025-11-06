@@ -8,7 +8,7 @@ import type { Task } from '../model/Task';
 interface TaskItemProps {
     task: Task;
     onToggleTaskStatus: (task: Task) => void;
-    onDeleteTask: () => void;
+    onDeleteTask: (taskToDelete: Task) => void;
 }
 
 export function TaskItem ({
@@ -59,7 +59,7 @@ export function TaskItem ({
             <button 
                 className={styles.btnDelete}
                 title='Deletar tarefa'
-                onClick={onDeleteTask}
+                onClick={() => onDeleteTask(task)}
             >
                 <TrashIcon size={20} className={styles.trashIcon} alt="Trash icon"/>
             </button>

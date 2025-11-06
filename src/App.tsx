@@ -32,8 +32,12 @@ function App() {
       )
   }
 
-  function deleteTask () {
-
+  function deleteTask (deletedTask: Task) {
+    setTaskList(
+      (prevList) => {
+        return prevList.filter(t => t !== deletedTask);
+      }
+    )
   }
 
   return (
