@@ -8,12 +8,16 @@ interface TaskListProps {
     list: Task[];
     onToggleTaskStatus: (task: Task) => void;
     onDeleteTask: (deletedTask: Task) => void;
+    countTasks: number;
+    countCompletedTasks: number;
 }
 
 export function TaskList ({
     list,
     onToggleTaskStatus,
-    onDeleteTask
+    onDeleteTask,
+    countTasks,
+    countCompletedTasks
 }: TaskListProps) {
 
     
@@ -23,12 +27,12 @@ export function TaskList ({
             <div className={styles.resume}>
                 <div className={styles.createdTasks}>
                     Tarefas criadas 
-                    <span className={styles.value}>0</span>
+                    <span className={styles.value}>{countTasks}</span>
                 </div>
                 
                 <div className={styles.completedTasks}>
                     Concluídas
-                    <span className={styles.value}>0</span>
+                    <span className={styles.value}>{countCompletedTasks} de {countTasks}</span>
                 </div>
             </div>
             {list.length === 0 &&

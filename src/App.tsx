@@ -17,9 +17,19 @@ function App() {
     };
 
     setTaskList([...taskList, objectTask]);
+    setCountTasks(taskList.length + 1);
   }
 
+  const [countTasks, setCountTasks] = useState(0);
+  const [countCompletedTasks, setCountCompletedTasks] = useState(0);
+
   function toggleTaskStatus (updateTask: Task) {
+      if (updateTask.status === 'COMPLETED') {
+          setCountCompletedTasks(countCompletedTasks + 1);
+      } else {
+          setCountCompletedTasks(countCompletedTasks - 1);
+      }
+
       setTaskList(
           (prevList) => {
               return prevList.map(t => {
@@ -33,11 +43,16 @@ function App() {
   }
 
   function deleteTask (deletedTask: Task) {
+    if (deletedTask.status === 'COMPLETED') {
+      setCountCompletedTasks(countCompletedTasks - 1);
+    }
+
     setTaskList(
       (prevList) => {
         return prevList.filter(t => t !== deletedTask);
       }
     )
+    setCountTasks(taskList.length - 1);
   }
 
   return (
@@ -47,7 +62,9 @@ function App() {
         onAddTask={handleAddTask} 
       />
       <TaskList 
-        list={taskList}  
+        list={taskList}
+        countTasks={countTasks}
+        countCompletedTasks={countCompletedTasks}    
         onToggleTaskStatus={toggleTaskStatus}
         onDeleteTask={deleteTask}
       />
