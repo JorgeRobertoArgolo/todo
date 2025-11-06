@@ -12,6 +12,12 @@
 
     max-width: 46rem;
     margin: auto;
+    margin-bottom: 0.75rem;
+}
+
+.checkButton {
+    background: transparent;
+    border: 0;
 }
 
 .checkIcon {
@@ -37,3 +43,7 @@
     color: var(--danger);
 }
 
+.completedText {
+    text-decoration: line-through;
+    color: var(--gray-300);
+}

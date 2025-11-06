@@ -1,7 +1,23 @@
+import type { Task } from '../model/Task';
 import { NullList } from './NullList';
 import styles from './TaskList.module.css'
 
-export function TaskList () {
+import { TaskItem } from './TaskItem';
+
+interface TaskListProps {
+    list: Task[];
+    onToggleTaskStatus: (task: Task) => void;
+    onDeleteTask: () => void;
+}
+
+export function TaskList ({
+    list,
+    onToggleTaskStatus,
+    onDeleteTask
+}: TaskListProps) {
+
+    
+
     return (
         <div className={styles.taskList}>
             <div className={styles.resume}>
@@ -15,7 +31,21 @@ export function TaskList () {
                     <span className={styles.value}>0</span>
                 </div>
             </div>
-            <NullList />
+            {list.length === 0 &&
+                <NullList />
+            }
+            {list.length > 0 &&
+                <div className={styles.listContainer}>
+                    {list.map((task) => (
+                        <TaskItem 
+                            key={task.item}
+                            task={task}
+                            onToggleTaskStatus={onToggleTaskStatus}
+                            onDeleteTask={onDeleteTask}
+                        />
+                    ))}
+                </div>
+            }
         </div>
     );
 }
